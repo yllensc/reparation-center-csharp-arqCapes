@@ -11,5 +11,10 @@ namespace Core.Entities;
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public long PhoneNumber { get; set; }
+        public virtual ICollection<Client>? Clients { get; set; }
+        public virtual ICollection<Employee>? Employees { get; set; }
+
+
+
 
     }

@@ -13,12 +13,10 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(p => p.Email)
             .IsRequired()
             .HasMaxLength(50);
-        builder.Property(p => p.LastName)
-            .IsRequired()
-            .HasMaxLength(100);
-        builder.Property(p => p.PhoneNumber)
-            .IsRequired()
-            .HasMaxLength(12);
+         builder.HasOne(c => c.User)  // Client tiene una relación con User
+        .WithMany(u => u.Clients)  // User tiene una colección de Clients
+        .HasForeignKey(c => c.UserId)  // Clave foránea en Client
+        .OnDelete(DeleteBehavior.Cascade); // se borra en cascada, de user y cliente
     }
 
 }
